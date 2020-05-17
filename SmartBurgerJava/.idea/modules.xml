@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SmartBurgerJava.iml" filepath="$PROJECT_DIR$/SmartBurgerJava.iml" group="SmartBurgerJava" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="SmartBurgerJava/app" />
     </modules>
   </component>
 </project>
