@@ -1219,6 +1219,8 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable hamburger
+drawable ic_hamburger
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
 drawable ic_launcher_background
@@ -1380,7 +1382,6 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
-id filter
 id filter_chip
 id fitToContents
 id fixed
@@ -1461,7 +1462,6 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
-id search
 id search_badge
 id search_bar
 id search_button
@@ -1695,6 +1695,7 @@ string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
 string button_cancel
 string button_next
+string button_registrar
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -1708,6 +1709,8 @@ string hide_bottom_view_on_scroll_behavior
 string hint_password
 string hint_username
 string icon_content_description
+string matchea_label
+string mis_pedidos_label
 string mtrl_badge_numberless_content_description
 string mtrl_chip_close_icon_content_description
 string mtrl_exceed_max_badge_number_suffix
@@ -1723,19 +1726,13 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string personaliza_label
 string product_description
 string product_title
 string search_menu_title
-string shr_accessories_label
 string shr_account_label
-string shr_apartment_label
-string shr_bottoms_label
-string shr_dresses_label
-string shr_featured_label
 string shr_filter_title
 string shr_search_title
-string shr_shoes_label
-string shr_tops_label
 string status_bar_notification_info_overflow
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
