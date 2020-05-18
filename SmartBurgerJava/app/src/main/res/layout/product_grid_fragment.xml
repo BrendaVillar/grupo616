@@ -32,7 +32,7 @@
             android:paddingEnd="12dp"
             android:paddingRight="12dp"
             app:contentInsetStart="0dp"
-            app:navigationIcon="@drawable/ic_hamburger"
+            app:navigationIcon="@drawable/shr_branded_menu"
             app:title="@string/app_name" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -42,6 +42,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
         android:elevation="8dp"
+
         android:background="@color/productGridBackgroundColor"
         android:paddingStart="@dimen/shr_product_grid_spacing"
         android:paddingEnd="@dimen/shr_product_grid_spacing"
