@@ -28,7 +28,7 @@ public class LoginFragment extends Fragment {
         final TextInputLayout passwordTextInput = view.findViewById(R.id.password_text_input);
         final TextInputEditText passwordEditText = view.findViewById(R.id.password_edit_text);
         MaterialButton nextButton = view.findViewById(R.id.next_button);
-
+        MaterialButton registrarButton = view.findViewById(R.id.registrar_button);
         // Set an error if the password is less than 8 characters.
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +40,16 @@ public class LoginFragment extends Fragment {
                     ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false); // Navigate to the next Fragment
 
                 }
+            }
+        });
+
+        registrarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    ((NavigationHost) getActivity()).navigateTo(new RegisterFragment(), false); // Navigate to the next Fragment
+
+
             }
         });
 
