@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/loginPageBackgroundColor"
-    tools:context=".LoginFragment">
+    tools:context="com.google.codelabs.mdc.java.smartburger.LoginFragment">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,6 +24,7 @@
         android:typeface="serif"
         app:fontFamily="sans-serif-condensed-medium" />
     <com.google.android.material.textfield.TextInputLayout
+
         style="@style/Widget.Shrine.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,6 +32,7 @@
         android:hint="Nombre">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -38,6 +40,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+
         style="@style/Widget.Shrine.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +48,7 @@
         android:hint="Apellido">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_apellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -52,6 +56,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+
         style="@style/Widget.Shrine.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,13 +64,15 @@
         android:hint="DNI">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_dni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="number"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+
         style="@style/Widget.Shrine.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,6 +80,7 @@
         android:hint="Email">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -82,6 +90,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+
         style="@style/Widget.Shrine.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -89,9 +98,41 @@
         android:hint="Contraseña">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_contraseña"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:hint="Comision">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_comision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:hint="Grupo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_grupo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
