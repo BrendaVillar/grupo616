@@ -166,7 +166,7 @@ public class RegisterFragment2 extends Fragment {
                                         Integer commission,Integer group){
         Register datosRegistro = new Register();
 
-        datosRegistro.env = "TEST";
+        datosRegistro.env = "DEV";
         datosRegistro.name = name;
         datosRegistro.lastname = lastname;
         datosRegistro.dni = dni;
@@ -206,7 +206,7 @@ public class RegisterFragment2 extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
                     }
                 } ) {
             @Override
