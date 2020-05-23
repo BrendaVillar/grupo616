@@ -1,5 +1,6 @@
 package com.google.codelabs.mdc.java.smartburger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -13,13 +14,15 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shr_main_activity);
-
-        if (savedInstanceState == null) {
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
+   /*     if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.container, new LoginFragment())
                     .commit();
-        }
+        }*/
     }
 
     /**
