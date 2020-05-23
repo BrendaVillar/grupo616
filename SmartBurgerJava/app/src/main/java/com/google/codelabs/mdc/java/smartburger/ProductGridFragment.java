@@ -1,5 +1,6 @@
 package com.google.codelabs.mdc.java.smartburger;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.codelabs.mdc.java.smartburger.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.codelabs.mdc.java.smartburger.network.ProductEntry;
 
 public class ProductGridFragment extends Fragment {
@@ -35,6 +37,17 @@ public class ProductGridFragment extends Fragment {
 
         // Set up the toolbar
         setUpToolbar(view);
+
+          MaterialButton matcheabutton = (MaterialButton) view.findViewById(R.id.matchea_button);
+
+          matcheabutton.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  Intent i = new Intent(getActivity(),ServiceActivity.class);
+                  startActivity(i);
+
+              }
+          });
 
         // Set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
