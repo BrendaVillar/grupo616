@@ -5,7 +5,8 @@
     <string name="button_next">Ingresar</string>
     <string name="button_cancel">Cancelar</string>
     <string name="button_registrar">¿Aún no tenes usuario? Registrate</string>
-    <string name="error_password">La contraseña debe tener como minimo 4 caracteres</string>
+    <string name="error_password">La contraseña debe tener como minimo 8 caracteres</string>
+    <string name="error_completar">Este campo es obligatorio.</string>
     <string name="shr_filter_title">Filtrar</string>
     <string name="shr_search_title">Buscar</string>
     <string name="product_title">Titulo</string>

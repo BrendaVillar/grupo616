@@ -3,6 +3,7 @@ package com.google.codelabs.mdc.java.smartburger;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.codelabs.mdc.java.smartburger.R;
 import com.google.codelabs.mdc.java.smartburger.endpoints.URLs;
 import com.google.codelabs.mdc.java.smartburger.models.Register;
@@ -52,6 +54,13 @@ public class RegisterFragment2 extends Fragment {
         final TextInputEditText passwordPlaceHolder = view.findViewById(R.id.register_contraseña);
         final TextInputEditText commissionPlaceHolder = view.findViewById(R.id.register_comision);
         final TextInputEditText groupPlaceHolder = view.findViewById(R.id.register_grupo);
+        final TextInputLayout errorContra = view.findViewById(R.id.register_error_contra);
+        final TextInputLayout errorMail = view.findViewById(R.id.register_error_email);
+        final TextInputLayout errorNombre = view.findViewById(R.id.register_error_nombre);
+        final TextInputLayout errorApellido = view.findViewById(R.id.register_error_apellido);
+        final TextInputLayout errorDNI = view.findViewById(R.id.register_error_dni);
+        final TextInputLayout errorComision = view.findViewById(R.id.register_error_comision);
+        final TextInputLayout errorGrupo = view.findViewById(R.id.register_error_grupo);
 
 
 
@@ -60,7 +69,8 @@ public class RegisterFragment2 extends Fragment {
             public void onClick(View view) {
 
 
-               if(camposValidos(namePlaceHolder, lastnamePlaceHolder, emailPlaceHolder, passwordPlaceHolder, dniPlaceHolder, commissionPlaceHolder,groupPlaceHolder )) {
+               if(camposValidos(namePlaceHolder, lastnamePlaceHolder, emailPlaceHolder, passwordPlaceHolder, dniPlaceHolder, commissionPlaceHolder,groupPlaceHolder,
+                       errorContra, errorApellido, errorNombre, errorDNI, errorComision, errorGrupo, errorMail )) {
 
                 String name = namePlaceHolder.getText().toString();
                 String lastname = lastnamePlaceHolder.getText().toString();
@@ -71,18 +81,14 @@ public class RegisterFragment2 extends Fragment {
                 Integer group = Integer.parseInt(groupPlaceHolder.getText().toString());
                 Register datosRegistro = cargarDatosRegistro(name, lastname,dni, email,password, commission,group);
 
-                try {
-                    //here we will register the user to server
-                    registerUser(datosRegistro);
-/*
-                    ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false); // Navigate to the next Fragment
-*/
-                } catch (JSONException e) {
-                    e.printStackTrace();
+               try {
+                  //  here we will register the user to server
+
+                   registerUser(datosRegistro);
+
+              } catch (JSONException e) {
+                   e.printStackTrace();
                 }
-               }else{ //si no es valido
-                   //TODO: Que se recuadre en rojo los campos y sacar este navigation
-                   ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false); // Navigate to the next Fragment
                }
 
             }
@@ -99,30 +105,60 @@ public class RegisterFragment2 extends Fragment {
         return view;
     }
 
-    private boolean camposValidos(TextInputEditText namePlaceHolder, TextInputEditText lastnamePlaceHolder, TextInputEditText emailPlaceHolder, TextInputEditText passwordPlaceHolder, TextInputEditText dniPlaceHolder, TextInputEditText commissionPlaceHolder, TextInputEditText groupPlaceHolder) {
+    private boolean camposValidos(TextInputEditText namePlaceHolder, TextInputEditText lastnamePlaceHolder, TextInputEditText emailPlaceHolder,
+                                  TextInputEditText passwordPlaceHolder, TextInputEditText dniPlaceHolder, TextInputEditText commissionPlaceHolder,
+                                  TextInputEditText groupPlaceHolder, TextInputLayout errorContra, TextInputLayout errorApellido, TextInputLayout errorNombre,
+                                  TextInputLayout errorDNI, TextInputLayout errorComision, TextInputLayout errorGrupo, TextInputLayout errorMail) {
 
+        boolean valid = true;
+        if(TextUtils.isEmpty(passwordPlaceHolder.getText()) || passwordPlaceHolder.getText().length() < 8){
+            errorContra.setError(getString(R.string.error_password));
+            valid =  false;
+        } else{
+            errorContra.setError(null);
+        }
 
         if(TextUtils.isEmpty(namePlaceHolder.getText())){
-            return  false;
+            errorNombre.setError(getString(R.string.error_completar));
+            valid =  false;
+        } else{
+            errorNombre.setError(null);
         }
         if(TextUtils.isEmpty(lastnamePlaceHolder.getText())){
-            return  false;
+            errorApellido.setError(getString(R.string.error_completar));
+            valid =  false;
+        } else{
+            errorApellido.setError(null);
         }
-        if(TextUtils.isEmpty(emailPlaceHolder.getText())){
-            return  false;
+        if(TextUtils.isEmpty(emailPlaceHolder.getText()) ){
+            errorMail.setError(getString(R.string.error_completar));
+            valid =  false;
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(emailPlaceHolder.getText().toString().trim()).matches() ){
+            errorMail.setError("El texto ingresado no tiene formato de email");
         }
-        if(TextUtils.isEmpty(passwordPlaceHolder.getText())){
-            return  false;
-        }if(TextUtils.isEmpty(dniPlaceHolder.getText())){
-            return  false;
+        else{
+            errorMail.setError(null);
+        }
+
+        if(TextUtils.isEmpty(dniPlaceHolder.getText())){
+            errorDNI.setError(getString(R.string.error_completar));
+            valid =  false;
+        } else{
+            errorDNI.setError(null);
         }
         if(TextUtils.isEmpty(commissionPlaceHolder.getText())){
-            return  false;
+            errorComision.setError(getString(R.string.error_completar));
+            valid =  false;
+        } else{
+            errorComision.setError(null);
         }
         if(TextUtils.isEmpty(groupPlaceHolder.getText())){
-            return  false;
+            errorGrupo.setError(getString(R.string.error_completar));
+            valid =  false;
+        } else{
+            errorGrupo.setError(null);
         }
-        return true;
+        return valid;
     }
 
 
@@ -130,7 +166,7 @@ public class RegisterFragment2 extends Fragment {
                                         Integer commission,Integer group){
         Register datosRegistro = new Register();
 
-        datosRegistro.env = "DEV";
+        datosRegistro.env = "TEST";
         datosRegistro.name = name;
         datosRegistro.lastname = lastname;
         datosRegistro.dni = dni;
@@ -162,7 +198,8 @@ public class RegisterFragment2 extends Fragment {
                     public void onResponse(JSONObject obj) {
 
                         Log.d("TAG", obj.toString());
-
+                        Toast.makeText(getActivity().getApplicationContext(), "Registrado con éxito", Toast.LENGTH_LONG).show();
+                        ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false);
                     }
 
                 },
