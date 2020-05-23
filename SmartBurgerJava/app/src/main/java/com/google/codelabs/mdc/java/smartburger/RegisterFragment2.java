@@ -32,7 +32,8 @@ import org.json.JSONObject;
 
 public class RegisterFragment2 extends Fragment {
 
-
+    RadioGroup radioGroupGender;
+    ProgressBar progressBar;
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

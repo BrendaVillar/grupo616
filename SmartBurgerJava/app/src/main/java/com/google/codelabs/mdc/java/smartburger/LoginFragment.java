@@ -79,11 +79,9 @@ public class LoginFragment extends Fragment {
         registrarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*
                 ((NavigationHost) getActivity()).navigateTo(new RegisterFragment2(), false); // Navigate to the next Fragment
-*/
-                Intent intent = new Intent(getActivity(), RegisterFragment.class);
-                startActivity(intent);
+       /*         Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                startActivity(intent);*/
 
             }
         });
