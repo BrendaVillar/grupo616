@@ -161,7 +161,7 @@ public class RegisterFragment extends Fragment {
                                         Integer commission,Integer group){
         Register datosRegistro = new Register();
 
-        datosRegistro.env = "TEST";
+        datosRegistro.env = "DEV";
         datosRegistro.name = name;
         datosRegistro.lastname = lastname;
         datosRegistro.dni = dni;
@@ -169,7 +169,7 @@ public class RegisterFragment extends Fragment {
         datosRegistro.password = password;
         datosRegistro.commission = commission ;
         datosRegistro.group =group ;
-return  datosRegistro;
+        return  datosRegistro;
 
     }
 
