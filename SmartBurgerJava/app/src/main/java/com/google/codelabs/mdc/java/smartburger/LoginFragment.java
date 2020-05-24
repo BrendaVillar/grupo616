@@ -1,6 +1,8 @@
 package com.google.codelabs.mdc.java.smartburger;
 
-import android.content.Intent;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -16,37 +18,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.androidnetworking.utils.Utils;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.codelabs.mdc.java.smartburger.endpoints.URLs;
-import com.google.codelabs.mdc.java.smartburger.models.Register;
 import com.google.codelabs.mdc.java.smartburger.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Fragment representing the login screen for Shrine.
- */
 public class LoginFragment extends Fragment {
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.login_fragment, container, false);
 
         final TextInputLayout errorPassword = view.findViewById(R.id.password_text_input);
@@ -55,23 +47,26 @@ public class LoginFragment extends Fragment {
         final TextInputEditText email_field = view.findViewById(R.id.login_email);
         MaterialButton aceptarButton = view.findViewById(R.id.next_button);
         MaterialButton registrarButton = view.findViewById(R.id.registrar_button);
-        // Set an error if the password is less than 8 characters.
+
         aceptarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (conexionInternet()) {
+                    if (camposValidos(password_field, email_field, errorPassword, errorEmail)) {
+                        User usuario = new User();
+                        usuario.email = email_field.getText().toString();
+                        usuario.password = password_field.getText().toString();
+                        try {
+                            userLogin(usuario);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                if(camposValidos(password_field, email_field, errorPassword, errorEmail)){
-                    User usuario = new User();
-                    usuario.email = email_field.getText().toString();
-                    usuario.password = password_field.getText().toString();
-                    try {
-                        userLogin(usuario);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(), "No hay conexión a internet", Toast.LENGTH_SHORT).show();
 
                 }
-
 
             }
         });
@@ -79,7 +74,7 @@ public class LoginFragment extends Fragment {
         registrarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationHost) getActivity()).navigateTo(new RegisterFragment2(), false); // Navigate to the next Fragment
+                ((NavigationHost) getActivity()).navigateTo(new RegisterFragment(), false); // Navigate to the next Fragment
        /*         Intent intent = new Intent(getActivity(), RegisterActivity.class);
                 startActivity(intent);*/
 
@@ -99,6 +94,18 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
+    private boolean conexionInternet() {
+        boolean connected = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            connected = true;
+        } else
+            connected = false;
+        return connected;
+    }
+
 
     private void userLogin(User user) throws JSONException {
         JSONObject jsonObject = new JSONObject();
@@ -112,7 +119,7 @@ public class LoginFragment extends Fragment {
         jsonObject.put("group", user.group);
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, URLs.URL_LOGIN,jsonObject,
+        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, URLs.URL_LOGIN, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject obj) {
@@ -127,36 +134,31 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getActivity().getApplicationContext(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
-
-
                     }
-                })
-        {
+                }) {
             @Override
-            public String getBodyContentType(){
+            public String getBodyContentType() {
                 return "application/json";
             }
         };
-
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonobj);
     }
 
 
     private boolean camposValidos(TextInputEditText password_field, TextInputEditText email_field, TextInputLayout errorPassword, TextInputLayout emailUsuario) {
-         boolean valid = true;
+        boolean valid = true;
         if (!isPasswordValid(password_field.getText())) {
             errorPassword.setError(getString(R.string.error_password));
             valid = false;
         } else {
             errorPassword.setError(null); // Clear the error
         }
-        if(TextUtils.isEmpty(email_field.getText())){
+        if (TextUtils.isEmpty(email_field.getText())) {
             emailUsuario.setError(getString(R.string.error_completar));
             valid = false;
-        }else if(!Patterns.EMAIL_ADDRESS.matcher(email_field.getText().toString().trim()).matches() ){
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email_field.getText().toString().trim()).matches()) {
             emailUsuario.setError("El texto ingresado no tiene formato de email");
-        }
-        else{
+        } else {
             emailUsuario.setError(null);
         }
         return valid;
@@ -168,4 +170,5 @@ public class LoginFragment extends Fragment {
     */
     private boolean isPasswordValid(@Nullable Editable text) {
         return text != null && text.length() >= 8;
-    }}
+    }
+}

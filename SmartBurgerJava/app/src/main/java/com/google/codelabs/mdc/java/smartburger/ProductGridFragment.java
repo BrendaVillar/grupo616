@@ -1,5 +1,6 @@
 package com.google.codelabs.mdc.java.smartburger;
 
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
