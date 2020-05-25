@@ -29,6 +29,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.codelabs.mdc.java.smartburger.endpoints.URLs;
 import com.google.codelabs.mdc.java.smartburger.models.User;
+import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -107,7 +108,7 @@ public class LoginFragment extends Fragment {
     }
 
 
-    private void userLogin(User user) throws JSONException {
+    private void userLogin(final User user) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("env", user.env);
         jsonObject.put("name", user.name);
@@ -126,6 +127,23 @@ public class LoginFragment extends Fragment {
 
                         Log.d("TAG", obj.toString());
                         Toast.makeText(getActivity().getApplicationContext(), "Logueado con éxito", Toast.LENGTH_LONG).show();
+
+
+                            //creating a new userLogueado
+                        UserLogueado userLogueado = null;
+                        try {
+                            userLogueado = new UserLogueado(
+                                    user.email,
+                                    obj.getString("token")
+                            );
+                            //storing the user in shared preferences
+                            SharedPrefManager.getInstance(getActivity().getApplicationContext()).userLogin(userLogueado);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
                         ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false);
                     }
 

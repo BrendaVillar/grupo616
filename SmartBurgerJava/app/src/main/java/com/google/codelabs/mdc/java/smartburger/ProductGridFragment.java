@@ -39,6 +39,7 @@ public class ProductGridFragment extends Fragment {
         setUpToolbar(view);
 
           MaterialButton matcheabutton = (MaterialButton) view.findViewById(R.id.matchea_button);
+          MaterialButton micuentaButton = (MaterialButton) view.findViewById(R.id.mi_cuenta_button);
 
           matcheabutton.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -48,6 +49,15 @@ public class ProductGridFragment extends Fragment {
 
               }
           });
+
+        micuentaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(),MiCuenta.class);
+                startActivity(i);
+
+            }
+        });
 
         // Set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);

@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
      <activity android:name="com.google.codelabs.mdc.java.smartburger.ServiceActivity"/>
+     <activity android:name="com.google.codelabs.mdc.java.smartburger.MiCuenta"/>
         <service android:name="com.google.codelabs.mdc.java.smartburger.ShakeService"></service>
     </application>
 </manifest>
