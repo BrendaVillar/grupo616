@@ -22,20 +22,21 @@ public class MiCuenta extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mi_cuenta);
-        setUpToolbar();
+        TextView token = (TextView) findViewById(R.id.mi_cuenta_token);
+        UserLogueado user = SharedPrefManager.getInstance(this).getUser();
 
+        /*BARRA DE NAVEGACION*/
+        setUpToolbar();
 
         MaterialButton matcheabutton = (MaterialButton) findViewById(R.id.matchea_button);
         MaterialButton micuentaButton = (MaterialButton) findViewById(R.id.mi_cuenta_button);
-        TextView token = (TextView) findViewById(R.id.mi_cuenta_token);
-        UserLogueado user = SharedPrefManager.getInstance(this).getUser();
-        token.setText( String.valueOf(user.getToken()));  
+
+        token.setText( String.valueOf(user.getToken()));
         matcheabutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MiCuenta.this,ServiceActivity.class);
                 startActivity(i);
-
             }
         });
 
@@ -44,11 +45,17 @@ public class MiCuenta extends AppCompatActivity{
             public void onClick(View view) {
                 Intent i = new Intent(MiCuenta.this,MiCuenta.class);
                 startActivity(i);
+            }
+        });
+        /*END*/
+        MaterialButton logOutButton = findViewById(R.id.log_out);
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPrefManager.getInstance(getApplicationContext()).logout();
 
             }
         });
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             findViewById(R.id.mi_cuenta).setBackgroundResource(R.drawable.shr_product_grid_background_shape);
         }
