@@ -10,8 +10,6 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,10 +24,9 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.codelabs.mdc.java.smartburger.R;
 import com.google.codelabs.mdc.java.smartburger.endpoints.URLs;
-import com.google.codelabs.mdc.java.smartburger.models.Register;
 import com.google.codelabs.mdc.java.smartburger.models.User;
+import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -193,7 +190,7 @@ public class RegisterFragment extends Fragment {
         return connected;
     }
 
-    private void registerUser(User datosRegistro) throws JSONException {
+    private void registerUser(final User datosRegistro) throws JSONException {
 
 
         JSONObject jsonObject = new JSONObject();
@@ -214,6 +211,21 @@ public class RegisterFragment extends Fragment {
 
                         Log.d("TAG", obj.toString());
                         Toast.makeText(getActivity().getApplicationContext(), "Registrado con éxito", Toast.LENGTH_LONG).show();
+
+                        try {
+                        //creating a new userLogueado
+                        UserLogueado user = new UserLogueado(
+                             datosRegistro.email,
+                                obj.getString("token")
+                        );
+                            //storing the user in shared preferences
+                            SharedPrefManager.getInstance(getActivity().getApplicationContext()).userLogin(user);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
                         ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false);
                     }
 
