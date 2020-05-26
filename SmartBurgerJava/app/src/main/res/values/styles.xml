@@ -9,6 +9,19 @@
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
     </style>
 
+    <style name="Widget.Shrine.TextViewName" parent="">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingBottom">20dp</item>
+    </style>
+
+    <style name="Widget.Shrine.TextViewDescripcion" parent="">
+       <!-- <item name="android:textColor">@color/textColorPrimary</item>-->
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingBottom">20dp</item>
+    </style>
+
+
     <style name="Widget.Shrine.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="hintTextAppearance">@style/TextAppearance.Shrine.TextInputLayout.HintText</item>
         <item name="hintTextColor">@color/textColorPrimary</item>
