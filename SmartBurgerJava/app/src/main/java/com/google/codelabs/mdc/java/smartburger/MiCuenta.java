@@ -32,6 +32,15 @@ public class MiCuenta extends AppCompatActivity{
 
         MaterialButton matcheabutton = (MaterialButton) findViewById(R.id.matchea_button);
         MaterialButton micuentaButton = (MaterialButton) findViewById(R.id.mi_cuenta_button);
+        MaterialButton personalizaButton = (MaterialButton) findViewById(R.id.personaliza_button);
+
+        personalizaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MiCuenta.this,PersonalizaActivity.class);
+                startActivity(i);
+            }
+        });
 
         matcheabutton.setOnClickListener(new View.OnClickListener() {
             @Override

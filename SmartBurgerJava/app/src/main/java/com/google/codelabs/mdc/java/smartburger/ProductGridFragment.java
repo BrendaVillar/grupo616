@@ -40,7 +40,15 @@ public class ProductGridFragment extends Fragment {
 
           MaterialButton matcheabutton = (MaterialButton) view.findViewById(R.id.matchea_button);
           MaterialButton micuentaButton = (MaterialButton) view.findViewById(R.id.mi_cuenta_button);
+        MaterialButton personalizaButton = (MaterialButton) view.findViewById(R.id.personaliza_button);
 
+        personalizaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(),PersonalizaActivity.class);
+                startActivity(i);
+            }
+        });
           matcheabutton.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
