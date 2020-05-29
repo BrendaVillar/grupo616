@@ -111,7 +111,7 @@ public class PersonalizaActivity extends AppCompatActivity {
                 if(incompleto){
                     Toast.makeText(getApplicationContext(), "Por favor, seleccione un tipo de carne", Toast.LENGTH_LONG).show();
                 } else {
-                    hamburger.nombre = "Tu hamburguesa Personalizada";
+                    hamburger.nombre = "hamburguesa Personalizada";
                     Intent i = new Intent(PersonalizaActivity.this,CarritoActivity.class);
                     i.putExtra("Hamburguesa",  hamburger);
                     startActivity(i);
