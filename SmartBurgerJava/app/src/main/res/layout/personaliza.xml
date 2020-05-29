@@ -55,24 +55,221 @@
             android:padding="10dp">
 
             <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
                 app:srcCompat="@drawable/ic_burger" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="30dp"
                 android:text="CUSTOMIZA"
                 android:textAppearance="@style/TextAppearance.Shrine.Title"
+                android:textSize="24sp"
                 android:typeface="serif"
                 app:fontFamily="sans-serif-condensed-medium" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Ingredientes"
+                android:textAppearance="@style/TextAppearance.Shrine.Toolbar"
+                android:typeface="serif"
+                app:fontFamily="sans-serif-condensed-medium" />
 
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/cheddar"
+                        android:layout_width="107dp"
+                        android:layout_height="wrap_content"
+                        android:text="Cheddar"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/panceta"
+                        android:layout_width="124dp"
+                        android:layout_height="wrap_content"
+                        android:text="Panceta"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/cebolla"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cebolla"
+                        app:useMaterialThemeColors="false" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/muzzarella"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Muzzarella"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/tomate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tomate"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/lechuga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lechuga"
+                        app:useMaterialThemeColors="false" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/huevo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Huevo"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/champignon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Champignon"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/pepino"
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:text="Pepino"
+                        app:useMaterialThemeColors="false" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Salsas"
+                android:textAppearance="@style/TextAppearance.Shrine.Toolbar"
+                android:typeface="serif"
+                app:fontFamily="sans-serif-condensed-medium" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/barbacoa"
+                        android:layout_width="105dp"
+                        android:layout_height="wrap_content"
+                        android:text="Barbacoa"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/ketchup"
+                        android:layout_width="127dp"
+                        android:layout_height="wrap_content"
+                        android:text="Ketchup"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/mayonesa"
+                        android:layout_width="129dp"
+                        android:layout_height="wrap_content"
+                        android:text="Mayonesa"
+                        app:useMaterialThemeColors="false" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Carnes"
+                android:textAppearance="@style/TextAppearance.Shrine.Toolbar"
+                android:typeface="serif"
+                app:fontFamily="sans-serif-condensed-medium" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@+id/first"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/vacuna"
+                            android:layout_width="107dp"
+                            android:layout_height="wrap_content"
+                            android:text="Vacuna" />
+
+                        <RadioButton
+                            android:id="@+id/pollo"
+                            android:layout_width="127dp"
+                            android:layout_height="wrap_content"
+                            android:text="Pollo" />
+
+                        <RadioButton
+                            android:id="@+id/veggie"
+                            android:layout_width="123dp"
+                            android:layout_height="wrap_content"
+                            android:text="Veggie" />
+                    </RadioGroup>
+                </TableRow>
+            </TableLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/error_cantidad"
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:hint="Cantidad de medallones">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/cantHamb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_carrito"
@@ -80,8 +277,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:text="Añadir"
                 app:icon="@drawable/ic_add_shopping_cart_24px"
-                app:iconTint="@color/textColorPrimary"/>
+                app:iconTint="@color/textColorPrimary" />
 
         </LinearLayout>
 
