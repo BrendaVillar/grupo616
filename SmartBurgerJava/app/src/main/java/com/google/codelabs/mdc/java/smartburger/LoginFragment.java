@@ -1,6 +1,7 @@
 package com.google.codelabs.mdc.java.smartburger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -28,11 +29,15 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.codelabs.mdc.java.smartburger.endpoints.URLs;
+import com.google.codelabs.mdc.java.smartburger.models.Event;
 import com.google.codelabs.mdc.java.smartburger.models.User;
 import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginFragment extends Fragment {
 
@@ -141,7 +146,17 @@ public class LoginFragment extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        Event evento = new Event();
+                        evento.env= "DEV";
+                        evento.state= "ACTIVO";
+                        evento.type_events="Login";
+                        evento.description="El usuario " + user.email + " se ha logueado";
 
+                        try {
+                            registrarEvento(evento);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
 
                         ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false);
@@ -162,6 +177,47 @@ public class LoginFragment extends Fragment {
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonobj);
     }
 
+    private void registrarEvento(Event evento) throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("env", evento.env);
+        jsonObject.put("type_events", evento.type_events);
+        jsonObject.put("state", evento.state);
+        jsonObject.put("description", evento.description);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext().getApplicationContext());
+
+        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, URLs.URL_EVENT, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject obj) {
+
+                        Log.d("TAG", obj.toString());
+
+
+
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String>  params = new HashMap<String, String>();
+                UserLogueado user = SharedPrefManager.getInstance(getContext().getApplicationContext()).getUser();
+                params.put("token", user.token);
+                return params;
+            }
+        };
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonobj);
+    }
 
     private boolean camposValidos(TextInputEditText password_field, TextInputEditText email_field, TextInputLayout errorPassword, TextInputLayout emailUsuario) {
         boolean valid = true;
@@ -182,10 +238,7 @@ public class LoginFragment extends Fragment {
         return valid;
     }
 
-    /*
-       In reality, this will have more complex logic including, but not limited to, actual
-       authentication of the username and password.
-    */
+
     private boolean isPasswordValid(@Nullable Editable text) {
         return text != null && text.length() >= 8;
     }

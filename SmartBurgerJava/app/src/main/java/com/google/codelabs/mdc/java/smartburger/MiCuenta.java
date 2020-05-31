@@ -24,9 +24,11 @@ public class MiCuenta extends AppCompatActivity{
         setContentView(R.layout.mi_cuenta);
         TextView token = (TextView) findViewById(R.id.mi_cuenta_token);
         TextView email = (TextView) findViewById(R.id.mi_cuenta_email);
+        TextView compra = (TextView) findViewById(R.id.mi_cuenta_compra);
         UserLogueado user = SharedPrefManager.getInstance(this).getUser();
         token.setText( String.valueOf(user.getToken()));
         email.setText( String.valueOf(user.getEmail()));
+        compra.setText( String.valueOf(SharedPrefManager.getInstance(this).getCompra()));
         /*BARRA DE NAVEGACION*/
         setUpToolbar();
 

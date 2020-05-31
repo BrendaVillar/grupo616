@@ -105,6 +105,20 @@ android:layout_height="match_parent">
                     android:textAppearance="@style/Widget.Shrine.TextViewDescripcion" />
             </TableRow>
 
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Compra: "
+                    android:textAppearance="@style/Widget.Shrine.TextViewName" />
+
+                <TextView
+                    android:id="@+id/mi_cuenta_compra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Widget.Shrine.TextViewDescripcion" />
+            </TableRow>
+
         </TableLayout>
 
         <com.google.android.material.button.MaterialButton
