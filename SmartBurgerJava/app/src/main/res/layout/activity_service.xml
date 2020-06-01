@@ -38,7 +38,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/activiyService"
+        android:id="@+id/activityService"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
@@ -53,51 +53,57 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:paddingTop="16dp">
-        <ImageView
-            android:id="@+id/cambiohamburguesa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="48dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/descripcionHamburguesa"
-            android:layout_marginTop="20dp"
-            android:textSize="30sp"
-            android:textColor="@color/colorAccent"/>
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                app:srcCompat="@drawable/match" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Matchea tu hamburguesa del día"
+                android:textAppearance="@style/TextAppearance.Shrine.Toolbar"
+                android:typeface="serif"
+                android:layout_gravity="center"
+                app:fontFamily="sans-serif-condensed-medium" />
+
+            <TextView
+                android:id="@+id/textService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:textAppearance="@style/TextAppearance.Shrine.Title"
+                android:textSize="20sp"
+                android:typeface="serif"
+                app:fontFamily="sans-serif-condensed-medium" />
+
+
+            <ImageView
+                android:id="@+id/cambiohamburguesa"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp" />
+
+
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_carrito"
+                style="@style/Widget.App.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:text="Matchea"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 </FrameLayout>
-
-<!--
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ServiceActivity">
-
-    <ImageView
-        android:id="@+id/cambiohamburguesa"
-        android:layout_width="wrap_content"
-        android:layout_height="310dp"
-        android:layout_weight="1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvShakeService"
-        android:layout_marginTop="20dp"
-        android:textSize="30sp"
-        android:textColor="@color/colorAccent"/>
-
-
-
-
-</LinearLayout>-->

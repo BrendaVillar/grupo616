@@ -58,6 +58,8 @@ public class CarritoActivity extends AppCompatActivity {
         comprarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 if (conexionInternet()) {
                     Event evento = new Event();
                     evento.description = "Se ha registrado la compra de " + hamburguesa.getNombre();
@@ -169,6 +171,10 @@ public class CarritoActivity extends AppCompatActivity {
         }
         if(hamburguesa.isMayonesa()){
             ingredientes.add("Mayonesa");
+        }
+
+        if(hamburguesa.isProvoleta()){
+            ingredientes.add("Provoleta");
         }
         ingredientes.add(hamburguesa.getCarne());
 

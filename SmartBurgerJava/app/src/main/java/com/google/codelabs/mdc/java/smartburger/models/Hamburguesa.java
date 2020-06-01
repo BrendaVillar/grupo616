@@ -1,20 +1,24 @@
 package com.google.codelabs.mdc.java.smartburger.models;
 
+import android.widget.TextView;
+
 import java.io.Serializable;
 
 public class Hamburguesa implements Serializable {
-    public  boolean cheddar;
+    public boolean cheddar;
     public boolean panceta;
     public boolean cebolla;
     public boolean muzzarella;
-    public  boolean tomate;
+    public boolean tomate;
     public boolean lechuga;
     public boolean huevo;
     public boolean champignon;
-    public  boolean pepino;
+    public boolean pepino;
     public boolean barbacoa;
     public boolean ketchup;
     public boolean mayonesa;
+    public boolean provoleta;
+
 
     public boolean isCheddar() {
         return cheddar;
@@ -112,6 +116,14 @@ public class Hamburguesa implements Serializable {
         this.mayonesa = mayonesa;
     }
 
+    public boolean isProvoleta() {
+        return provoleta;
+    }
+
+    public void setProvoleta(boolean provoleta) {
+        this.provoleta = provoleta;
+    }
+
     public String getCarne() {
         return carne;
     }
@@ -138,5 +150,21 @@ public class Hamburguesa implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public enum MatchBurger {
+        Cheeseburger("Cheeseburger", 0),
+        BigBurger("BigBurger", 1),
+        ProvoBurger("ProvoBurger", 2),
+        Veggie("Veggie", 3);
+
+
+        private String stringValue;
+        private int intValue;
+
+        private MatchBurger(String toString, int value) {
+            stringValue = toString;
+            intValue = value;
+        }
     }
 }

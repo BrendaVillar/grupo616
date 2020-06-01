@@ -62,7 +62,27 @@ public class ShakeService extends Service implements SensorEventListener {
         if (mAccel > 11) {
 
             Random rnd = new Random();
-            ServiceActivity.ImageService.setImageResource(ArrayImg[rnd.nextInt(ArrayImg.length)]);
+            int pos = rnd.nextInt(ArrayImg.length);
+            ServiceActivity.ImageService.setImageResource(ArrayImg[pos]);
+
+            switch (pos){
+                case 0:
+                    ServiceActivity.textService.setText("Cheeseburger");
+                    break;
+                case 1:
+                    ServiceActivity.textService.setText("ProvoBurger");
+                    break;
+                case 2:
+                    ServiceActivity.textService.setText("BigBurger");
+                    break;
+                case 3:
+                    ServiceActivity.textService.setText("Veggie");
+                    break;
+            }
+
+
+
+
 
         }
     }
