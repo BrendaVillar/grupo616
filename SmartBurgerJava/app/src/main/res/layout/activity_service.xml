@@ -66,11 +66,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"
                 android:text="Matchea tu hamburguesa del día"
                 android:textAppearance="@style/TextAppearance.Shrine.Toolbar"
                 android:typeface="serif"
-                android:layout_gravity="center"
                 app:fontFamily="sans-serif-condensed-medium" />
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:textAppearance="@style/TextAppearance.Shrine.Title"
                 android:textSize="20sp"
                 android:typeface="serif"
@@ -90,11 +90,14 @@
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp" />
+                android:layout_marginTop="20dp" />
 
 
-
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Agitá el celu para cambiar de hamburguesa! " />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_carrito"

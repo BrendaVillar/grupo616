@@ -27,19 +27,36 @@ public class ServiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
-
-        /*BARRA DE NAVEGACION*/
         setUpToolbar();
+        ///////////////////////////   BARRA DE NAVEGACION ///////////////////////////////////////////////
+
+
         MaterialButton matcheabutton = (MaterialButton) findViewById(R.id.matchea_button);
         MaterialButton micuentaButton = (MaterialButton) findViewById(R.id.mi_cuenta_button);
+        MaterialButton personalizaButton = (MaterialButton) findViewById(R.id.personaliza_button);
+        MaterialButton misPedidosButton = (MaterialButton) findViewById(R.id.mis_pedidos_button);
 
+        misPedidosButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ServiceActivity.this,MisPedidosActivity.class);
+                startActivity(i);
+            }
+        });
+
+        personalizaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ServiceActivity.this,PersonalizaActivity.class);
+                startActivity(i);
+            }
+        });
 
         matcheabutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ServiceActivity.this,ServiceActivity.class);
                 startActivity(i);
-
             }
         });
 
@@ -48,11 +65,10 @@ public class ServiceActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(ServiceActivity.this,MiCuenta.class);
                 startActivity(i);
-
             }
         });
 
-        /*END*/
+        ////////////////////////////////// END /////////////////////////////////////////////////
 
     ImageService = (ImageView)findViewById(R.id.cambiohamburguesa);
     textService = findViewById(R.id.textService);

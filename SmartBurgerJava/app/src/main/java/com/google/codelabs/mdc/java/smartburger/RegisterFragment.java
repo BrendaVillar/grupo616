@@ -1,6 +1,7 @@
 package com.google.codelabs.mdc.java.smartburger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -224,9 +225,10 @@ public class RegisterFragment extends Fragment {
                             e.printStackTrace();
                         }
 
+                        Intent i = new Intent(getActivity(), ServiceActivity.class);
+                        startActivity(i);
 
-
-                        ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false);
+                       /* ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false);*/
                     }
 
                 },

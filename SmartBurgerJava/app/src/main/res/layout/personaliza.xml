@@ -100,14 +100,14 @@
 
                     <CheckBox
                         android:id="@+id/panceta"
-                        android:layout_width="124dp"
+                        android:layout_width="99dp"
                         android:layout_height="wrap_content"
                         android:text="Panceta"
                         app:useMaterialThemeColors="false" />
 
                     <CheckBox
                         android:id="@+id/cebolla"
-                        android:layout_width="match_parent"
+                        android:layout_width="145dp"
                         android:layout_height="wrap_content"
                         android:text="Cebolla"
                         app:useMaterialThemeColors="false" />
@@ -143,18 +143,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <CheckBox
-                        android:id="@+id/huevo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Huevo"
-                        app:useMaterialThemeColors="false" />
 
                     <CheckBox
                         android:id="@+id/champignon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Champignon"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/huevo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Huevo"
                         app:useMaterialThemeColors="false" />
 
                     <CheckBox
@@ -186,25 +187,28 @@
                     android:layout_height="match_parent">
 
                     <CheckBox
+                        android:id="@+id/mayonesa"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="Mayonesa"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
                         android:id="@+id/barbacoa"
-                        android:layout_width="105dp"
+                        android:layout_width="107dp"
                         android:layout_height="wrap_content"
                         android:text="Barbacoa"
                         app:useMaterialThemeColors="false" />
 
+
                     <CheckBox
                         android:id="@+id/ketchup"
-                        android:layout_width="127dp"
+                        android:layout_width="141dp"
                         android:layout_height="wrap_content"
                         android:text="Ketchup"
                         app:useMaterialThemeColors="false" />
 
-                    <CheckBox
-                        android:id="@+id/mayonesa"
-                        android:layout_width="129dp"
-                        android:layout_height="wrap_content"
-                        android:text="Mayonesa"
-                        app:useMaterialThemeColors="false" />
+
                 </TableRow>
             </TableLayout>
 

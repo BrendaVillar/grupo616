@@ -8,6 +8,9 @@ import com.google.codelabs.mdc.java.smartburger.models.Hamburguesa;
 import com.google.codelabs.mdc.java.smartburger.models.User;
 import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 public class SharedPrefManager {
 
     private static final String SHARED_PREF_NAME = "volleyregisterlogin";
@@ -36,13 +39,7 @@ public class SharedPrefManager {
         editor.apply();
     }
 
-    public void comprarHamburguesa(String email, String nombreHamburguesas) {
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(KEY_EMAIL, email);
-        editor.putString(KEY_COMPRA, nombreHamburguesas);
-        editor.apply();
-    }
+
 
     //this method will checker whether user is already logged in or not
     public boolean isLoggedIn() {
@@ -60,10 +57,28 @@ public class SharedPrefManager {
     }
 
     //this method will give the logged in user
-    public String getCompra() {
+    public Map<String, ?> getAll() {
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_COMPRA, null);
+        return sharedPreferences.getAll();
+    }
 
+
+    public static void setCompra(String arrayName, ArrayList<String> array) {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(arrayName +"_size", array.size());
+        for(int i=0;i<array.size();i++)
+            editor.putString(arrayName + "_" + i, array.get(i));
+        editor.apply();
+    }
+
+    public static ArrayList<String> getCompra(String arrayName) {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        int size = sharedPreferences.getInt(arrayName + "_size", 0);
+        ArrayList<String> array = new ArrayList<>(size);
+        for(int i=0;i<size;i++)
+            array.add(sharedPreferences.getString(arrayName + "_" + i, null));
+        return array;
     }
 
     //this method will logout the user

@@ -31,6 +31,15 @@ public class PersonalizaActivity extends AppCompatActivity {
     MaterialButton matcheabutton = (MaterialButton) findViewById(R.id.matchea_button);
     MaterialButton micuentaButton = (MaterialButton) findViewById(R.id.mi_cuenta_button);
     MaterialButton personalizaButton = (MaterialButton) findViewById(R.id.personaliza_button);
+        MaterialButton misPedidosButton = (MaterialButton) findViewById(R.id.mis_pedidos_button);
+
+        misPedidosButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PersonalizaActivity.this,MisPedidosActivity.class);
+                startActivity(i);
+            }
+        });
 
         personalizaButton.setOnClickListener(new View.OnClickListener() {
             @Override

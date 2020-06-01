@@ -158,8 +158,9 @@ public class LoginFragment extends Fragment {
                             e.printStackTrace();
                         }
 
-
-                        ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false);
+                        Intent i = new Intent(getActivity(), ServiceActivity.class);
+                        startActivity(i);
+                  //      ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false);
                     }
 
                 },

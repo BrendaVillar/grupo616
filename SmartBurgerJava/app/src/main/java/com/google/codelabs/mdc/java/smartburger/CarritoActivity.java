@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -39,14 +42,21 @@ import java.util.Map;
 
 public class CarritoActivity extends AppCompatActivity {
    private ArrayList<String> ingredientes;
+    private ProgressBar spinner;
+    private Hamburguesa hamburguesa;
+    private RadioButton efectivo, tarjeta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.carrito_activity);
         setUpToolbar();
-        final Hamburguesa hamburguesa = (Hamburguesa) getIntent().getSerializableExtra("Hamburguesa");
+         hamburguesa = (Hamburguesa) getIntent().getSerializableExtra("Hamburguesa");
         final ListView listaIngredientes = findViewById(R.id.listIngredientes);
         final TextView nombreHamburguesa = findViewById(R.id.nombreHamburguesa);
+        efectivo = findViewById(R.id.efectivo);
+        tarjeta = findViewById(R.id.tarjeta);
+        spinner = findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.GONE);
         nombreHamburguesa.setText(hamburguesa.nombre);
         ingredientes = new ArrayList<String>();
         agregarIngredientes(hamburguesa);
@@ -61,17 +71,22 @@ public class CarritoActivity extends AppCompatActivity {
 
 
                 if (conexionInternet()) {
-                    Event evento = new Event();
-                    evento.description = "Se ha registrado la compra de " + hamburguesa.getNombre();
-                    evento.env = "DEV";
-                    evento.state = "ACTIVO";
-                    evento.type_events = "Click botón compra";
-                    try {
-                        registrarEvento(evento);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if (chequearMetodoPago()) {
 
+                        Event evento = new Event();
+                        evento.description = "Se ha registrado la compra de " + hamburguesa.getNombre();
+                        evento.env = "DEV";
+                        evento.state = "ACTIVO";
+                        evento.type_events = "Click botón compra";
+                        try {
+                            registrarEvento(evento);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Por favor, seleccione un metodo de pago", Toast.LENGTH_SHORT).show();
+
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), "No hay conexión a internet", Toast.LENGTH_SHORT).show();
                 }
@@ -81,7 +96,14 @@ public class CarritoActivity extends AppCompatActivity {
 
     }
 
+    private boolean chequearMetodoPago(){
+        if(tarjeta.isChecked() || efectivo.isChecked()){
+            return true;
+        }
+        return false;
+    }
     private void registrarEvento(final Event evento) throws JSONException {
+        spinner.setVisibility(View.VISIBLE);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("env", evento.env);
         jsonObject.put("type_events", evento.type_events);
@@ -97,11 +119,13 @@ public class CarritoActivity extends AppCompatActivity {
 
                         Log.d("TAG", obj.toString());
                         Toast.makeText(getApplicationContext(), "Se ha registrado el evento  con éxito", Toast.LENGTH_LONG).show();
-                        UserLogueado user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
-                        SharedPrefManager.getInstance(getApplicationContext()).comprarHamburguesa(user.email, evento.description);
+                        spinner.setVisibility(View.GONE);
+                        ArrayList<String> pedidos = SharedPrefManager.getInstance(getApplicationContext()).getCompra("Pedidos");
+                        pedidos.add("Se ha comprado " + hamburguesa.nombre);
+                        SharedPrefManager.getInstance(getApplicationContext()).setCompra("Pedidos", pedidos);
 
 
-                        Intent i = new Intent(CarritoActivity.this,PersonalizaActivity.class);
+                        Intent i = new Intent(CarritoActivity.this,MisPedidosActivity.class);
                         startActivity(i);
                     }
 
@@ -109,7 +133,10 @@ public class CarritoActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.d("ERROR", error.toString());
                         Toast.makeText(getApplicationContext(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+                        spinner.setVisibility(View.GONE);
+
                     }
                 }) {
             @Override
@@ -123,7 +150,22 @@ public class CarritoActivity extends AppCompatActivity {
                 params.put("token", user.token);
                 return params;
             }
-        };
+        }; jsonobj.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
         VolleySingleton.getInstance(this).addToRequestQueue(jsonobj);
     }
 
@@ -189,7 +231,7 @@ public class CarritoActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),PersonalizaActivity.class));
+               finish();
             }
         });
     }

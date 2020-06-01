@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher1"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_launcher1"
         android:supportsRtl="true"
         android:name="com.google.codelabs.mdc.java.smartburger.application.ShrineApplication"
         android:theme="@style/Theme.Shrine">
@@ -24,6 +24,7 @@
      <activity android:name="com.google.codelabs.mdc.java.smartburger.MiCuenta"/>
      <activity android:name="com.google.codelabs.mdc.java.smartburger.PersonalizaActivity"/>
      <activity android:name="com.google.codelabs.mdc.java.smartburger.CarritoActivity"/>
+     <activity android:name="com.google.codelabs.mdc.java.smartburger.MisPedidosActivity"/>
         <service android:name="com.google.codelabs.mdc.java.smartburger.ShakeService"></service>
     </application>
 </manifest>

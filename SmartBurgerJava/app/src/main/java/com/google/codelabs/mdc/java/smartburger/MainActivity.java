@@ -17,12 +17,16 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
         setContentView(R.layout.shr_main_activity);
 
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
-            if (savedInstanceState == null) {
+
+            Intent i = new Intent(MainActivity.this, ServiceActivity.class);
+            startActivity(i);
+
+         /*   if (savedInstanceState == null) {
                 getSupportFragmentManager()
                         .beginTransaction()
                         .add(R.id.container, new ProductGridFragment())
                         .commit();
-            }
+            }*/
         }
         else{
             if (savedInstanceState == null) {
