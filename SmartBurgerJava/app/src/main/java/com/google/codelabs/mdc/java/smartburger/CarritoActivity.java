@@ -73,7 +73,7 @@ public class CarritoActivity extends AppCompatActivity {
         if (cantPasos<10000){
             final TextView alertaPasos;
             alertaPasos = findViewById(R.id.alertaPasos);
-            alertaPasos.setText("¡Por tu salud deberias caminar mas para comer esta hamburguesa!");
+            alertaPasos.setText("El contador de pasos de tu celu dice que hoy hiciste " + cantPasos + " pasos ¡Por tu salud deberias caminar mas para comer esta hamburguesa!");
             alertaPasos.setTextColor(Color.RED);
 
         }
