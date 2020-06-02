@@ -2,6 +2,7 @@ package com.google.codelabs.mdc.java.smartburger;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -34,6 +35,7 @@ import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,17 +67,22 @@ public class CarritoActivity extends AppCompatActivity {
 
         MaterialButton comprarButton = findViewById(R.id.comprar);
 
+        Intent pasosService = new Intent(CarritoActivity.this,PodometroService.class);
+        startService(pasosService);
+
+        if (cantPasos<10000){
+            final TextView alertaPasos;
+            alertaPasos = findViewById(R.id.alertaPasos);
+            alertaPasos.setText("¡Por tu salud deberias caminar mas para comer esta hamburguesa!");
+            alertaPasos.setTextColor(Color.RED);
+
+        }
 
 
         comprarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent pasosService = new Intent(CarritoActivity.this,PodometroService.class);
-                startService(pasosService);
 
-                if (cantPasos<10000){
-                    Toast.makeText(getApplicationContext(), "Por tu salud deberias caminar mas para comer esta hamburguesa", Toast.LENGTH_SHORT).show();
-                }
 
                 if (conexionInternet()) {
                     if (chequearMetodoPago()) {
