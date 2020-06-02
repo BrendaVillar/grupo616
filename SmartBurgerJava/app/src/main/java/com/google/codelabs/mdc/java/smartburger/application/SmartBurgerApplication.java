@@ -4,11 +4,11 @@ import android.app.Application;
 import android.content.Context;
 import androidx.appcompat.app.AppCompatDelegate;
 
-public class ShrineApplication extends Application {
-    private static ShrineApplication instance;
+public class SmartBurgerApplication extends Application {
+    private static SmartBurgerApplication instance;
     private static Context appContext;
 
-    public static ShrineApplication getInstance() {
+    public static SmartBurgerApplication getInstance() {
         return instance;
     }
 

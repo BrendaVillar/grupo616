@@ -160,7 +160,6 @@ public class LoginFragment extends Fragment {
 
                         Intent i = new Intent(getActivity(), ServiceActivity.class);
                         startActivity(i);
-                  //      ((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false);
                     }
 
                 },

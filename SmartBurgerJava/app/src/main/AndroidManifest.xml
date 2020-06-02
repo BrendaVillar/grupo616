@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher1"
         android:supportsRtl="true"
-        android:name="com.google.codelabs.mdc.java.smartburger.application.ShrineApplication"
+        android:name="com.google.codelabs.mdc.java.smartburger.application.SmartBurgerApplication"
         android:theme="@style/Theme.Shrine">
         <activity android:name="com.google.codelabs.mdc.java.smartburger.MainActivity">
             <intent-filter>

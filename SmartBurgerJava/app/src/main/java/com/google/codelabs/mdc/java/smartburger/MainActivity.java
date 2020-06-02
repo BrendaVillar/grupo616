@@ -21,12 +21,7 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
             Intent i = new Intent(MainActivity.this, ServiceActivity.class);
             startActivity(i);
 
-         /*   if (savedInstanceState == null) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.container, new ProductGridFragment())
-                        .commit();
-            }*/
+
         }
         else{
             if (savedInstanceState == null) {
