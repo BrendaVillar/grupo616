@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -15,10 +15,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,7 +30,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.codelabs.mdc.java.smartburger.endpoints.URLs;
 import com.google.codelabs.mdc.java.smartburger.models.Event;
 import com.google.codelabs.mdc.java.smartburger.models.Hamburguesa;
-import com.google.codelabs.mdc.java.smartburger.models.User;
 import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
 import org.json.JSONException;
@@ -114,18 +113,33 @@ public class CarritoActivity extends AppCompatActivity {
 
         JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, URLs.URL_EVENT, jsonObject,
                 new Response.Listener<JSONObject>() {
+
                     @Override
                     public void onResponse(JSONObject obj) {
 
                         Log.d("TAG", obj.toString());
                         Toast.makeText(getApplicationContext(), "Se ha registrado el evento  con éxito", Toast.LENGTH_LONG).show();
                         spinner.setVisibility(View.GONE);
-                        ArrayList<String> pedidos = SharedPrefManager.getInstance(getApplicationContext()).getCompra("Pedidos");
-                        pedidos.add("Se ha comprado " + hamburguesa.nombre);
+                        Map<String, Integer> pedidos = SharedPrefManager.getInstance(getApplicationContext()).loadMap();
+                        if(pedidos.containsKey(hamburguesa)){
+                            Integer cantidadPedido = pedidos.get(hamburguesa.nombre);
+                            cantidadPedido += 1;
+                            pedidos.remove(hamburguesa.nombre);
+                            pedidos.put(hamburguesa.nombre, cantidadPedido);
+                        }
+                        else{
+                            pedidos.put(hamburguesa.nombre,1 );
+
+                        }
+                        SharedPrefManager.getInstance(getApplicationContext()).saveMap(pedidos);
+/*
+   ArrayList<String> pedidos = SharedPrefManager.getInstance(getApplicationContext()).getCompra("Pedidos");
+                        pedidos.add(hamburguesa.nombre);
                         SharedPrefManager.getInstance(getApplicationContext()).setCompra("Pedidos", pedidos);
+*/
 
 
-                        Intent i = new Intent(CarritoActivity.this,MisPedidosActivity.class);
+                        Intent i = new Intent(CarritoActivity.this, MisFavoritasActivity.class);
                         startActivity(i);
                     }
 

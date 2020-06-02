@@ -8,7 +8,11 @@ import com.google.codelabs.mdc.java.smartburger.models.Hamburguesa;
 import com.google.codelabs.mdc.java.smartburger.models.User;
 import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class SharedPrefManager {
@@ -80,6 +84,40 @@ public class SharedPrefManager {
             array.add(sharedPreferences.getString(arrayName + "_" + i, null));
         return array;
     }
+
+
+    public void saveMap(Map<String,Integer> inputMap){
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        if (sharedPreferences != null){
+            JSONObject jsonObject = new JSONObject(inputMap);
+            String jsonString = jsonObject.toString();
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.remove("My_map").commit();
+            editor.putString("My_map", jsonString);
+            editor.commit();
+        }
+    }
+
+    public Map<String,Integer> loadMap(){
+        Map<String,Integer> outputMap = new HashMap<String,Integer>();
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        try{
+            if (sharedPreferences != null){
+                String jsonString = sharedPreferences.getString("My_map", (new JSONObject()).toString());
+                JSONObject jsonObject = new JSONObject(jsonString);
+                Iterator<String> keysItr = jsonObject.keys();
+                while(keysItr.hasNext()) {
+                    String key = keysItr.next();
+                    Integer value = (Integer) jsonObject.get(key);
+                    outputMap.put(key, value);
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return outputMap;
+    }
+
 
     //this method will logout the user
     public void logout() {

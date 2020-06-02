@@ -24,7 +24,7 @@
      <activity android:name="com.google.codelabs.mdc.java.smartburger.MiCuenta"/>
      <activity android:name="com.google.codelabs.mdc.java.smartburger.PersonalizaActivity"/>
      <activity android:name="com.google.codelabs.mdc.java.smartburger.CarritoActivity"/>
-     <activity android:name="com.google.codelabs.mdc.java.smartburger.MisPedidosActivity"/>
+     <activity android:name="com.google.codelabs.mdc.java.smartburger.MisFavoritasActivity"/>
         <service android:name="com.google.codelabs.mdc.java.smartburger.ShakeService"></service>
     </application>
 </manifest>

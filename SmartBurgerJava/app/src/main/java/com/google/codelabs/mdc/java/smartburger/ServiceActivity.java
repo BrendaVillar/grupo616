@@ -3,19 +3,16 @@ package com.google.codelabs.mdc.java.smartburger;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.codelabs.mdc.java.smartburger.models.Hamburguesa;
-import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
 public class ServiceActivity extends AppCompatActivity {
 
@@ -39,7 +36,7 @@ public class ServiceActivity extends AppCompatActivity {
         misPedidosButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ServiceActivity.this,MisPedidosActivity.class);
+                Intent i = new Intent(ServiceActivity.this, MisFavoritasActivity.class);
                 startActivity(i);
             }
         });
@@ -171,6 +168,7 @@ public class ServiceActivity extends AppCompatActivity {
                 this.getResources().getDrawable(R.drawable.ic_hamburger), // Menu open icon
                 this.getResources().getDrawable(R.drawable.shr_close_menu))); // Menu close icon
     }
+
 
 
 

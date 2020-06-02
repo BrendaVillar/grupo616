@@ -15,6 +15,6 @@
     <!-- Shrine backdrop menu labels -->
     <string name="matchea_label">Matcheá</string>
     <string name="personaliza_label">Personalizá</string>
-    <string name="mis_pedidos_label">Mis Pedidos</string>
+    <string name="mis_pedidos_label">Mis hamburguesas favoritas</string>
     <string name="shr_account_label">Mi cuenta</string>
 </resources>

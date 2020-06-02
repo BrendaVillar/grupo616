@@ -10,9 +10,24 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.codelabs.mdc.java.smartburger.ServiceActivity;
+import com.google.codelabs.mdc.java.smartburger.endpoints.URLs;
+import com.google.codelabs.mdc.java.smartburger.models.Event;
+import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -80,11 +95,63 @@ public class ShakeService extends Service implements SensorEventListener {
                     break;
             }
 
+            Event evento = new Event();
+            evento.env= "DEV";
+            evento.state= "ACTIVO";
+            evento.type_events="Sensor Shake it";
+            evento.description="El usuario ha agitado la pantalla" ;
 
+            try {
+                registrarEvento(evento);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
 
         }
+    }
+
+    private void registrarEvento(Event evento) throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("env", evento.env);
+        jsonObject.put("type_events", evento.type_events);
+        jsonObject.put("state", evento.state);
+        jsonObject.put("description", evento.description);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, URLs.URL_EVENT, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject obj) {
+
+                        Log.d("TAG", obj.toString());
+
+
+
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String>  params = new HashMap<String, String>();
+                UserLogueado user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
+                params.put("token", user.token);
+                return params;
+            }
+        };
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonobj);
     }
 }
 

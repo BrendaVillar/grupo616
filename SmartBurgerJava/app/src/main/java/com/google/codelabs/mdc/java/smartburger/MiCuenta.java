@@ -3,8 +3,6 @@ package com.google.codelabs.mdc.java.smartburger;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
@@ -13,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.codelabs.mdc.java.smartburger.models.User;
 import com.google.codelabs.mdc.java.smartburger.models.UserLogueado;
 
 public class MiCuenta extends AppCompatActivity{
@@ -40,7 +37,7 @@ public class MiCuenta extends AppCompatActivity{
         misPedidosButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MiCuenta.this,MisPedidosActivity.class);
+                Intent i = new Intent(MiCuenta.this, MisFavoritasActivity.class);
                 startActivity(i);
             }
         });

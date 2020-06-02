@@ -3,7 +3,6 @@ package com.google.codelabs.mdc.java.smartburger;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -36,7 +35,7 @@ public class PersonalizaActivity extends AppCompatActivity {
         misPedidosButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PersonalizaActivity.this,MisPedidosActivity.class);
+                Intent i = new Intent(PersonalizaActivity.this, MisFavoritasActivity.class);
                 startActivity(i);
             }
         });

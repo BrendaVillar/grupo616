@@ -60,13 +60,13 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="16dp"
-                app:srcCompat="@drawable/ic_test" />
+                app:srcCompat="@drawable/fav" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:text="Mis pedidos"
+                android:text="Mis hamburguesas favoritas"
                 android:textAppearance="@style/TextAppearance.Shrine.Toolbar"
                 android:typeface="serif"
                 app:fontFamily="sans-serif-condensed-medium" />
