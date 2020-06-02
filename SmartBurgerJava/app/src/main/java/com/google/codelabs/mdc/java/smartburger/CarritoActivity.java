@@ -44,6 +44,7 @@ public class CarritoActivity extends AppCompatActivity {
     private ProgressBar spinner;
     private Hamburguesa hamburguesa;
     private RadioButton efectivo, tarjeta;
+    public static float cantPasos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,10 +65,17 @@ public class CarritoActivity extends AppCompatActivity {
 
         MaterialButton comprarButton = findViewById(R.id.comprar);
 
+
+
         comprarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent pasosService = new Intent(CarritoActivity.this,PodometroService.class);
+                startService(pasosService);
 
+                if (cantPasos<10000){
+                    Toast.makeText(getApplicationContext(), "Por tu salud deberias caminar mas para comer esta hamburguesa", Toast.LENGTH_SHORT).show();
+                }
 
                 if (conexionInternet()) {
                     if (chequearMetodoPago()) {
